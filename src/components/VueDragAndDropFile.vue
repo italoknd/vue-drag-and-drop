@@ -1,5 +1,15 @@
 <script setup lang="ts">
-const openFileExplorer = () => {
+import { IFile } from "../interfaces/IFiles";
+
+//VARIABLES
+let fileSelected = $ref<IFile>({
+  name: '',
+  size: 0,
+  type: ''
+})
+
+//FUNCTIONS
+const selectFile = () => {
   const inputFile: HTMLInputElement = document.createElement("input");
   inputFile.type = "file";
   inputFile.style.display = "none";
@@ -9,8 +19,7 @@ const openFileExplorer = () => {
 
     if (file.files && file.files.length > 0) {
       const firstFile: File = file.files[0];
-      
-      console.log(firstFile.name, firstFile.size, firstFile.type);
+      fileSelected = firstFile
     }
   });
 
@@ -21,9 +30,8 @@ const openFileExplorer = () => {
 </script>
 
 <template>
-  <div id="dropzone-main-container" @click="openFileExplorer()">
+  <div id="dropzone-main-container" @click="selectFile()">
     <div id="dashed">
-      <!-- <input type="file" style="display: none"> -->
       <p><strong>Escolha um arquivo</strong> ou arraste pra cá!</p>
     </div>
   </div>
