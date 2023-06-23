@@ -1,8 +1,29 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const openFileExplorer = () => {
+  const inputFile: HTMLInputElement = document.createElement("input");
+  inputFile.type = "file";
+  inputFile.style.display = "none";
+
+  inputFile.addEventListener("change", (event: Event) => {
+    const file = event.target as HTMLInputElement;
+
+    if (file.files && file.files.length > 0) {
+      const firstFile: File = file.files[0];
+      
+      console.log(firstFile.name, firstFile.size, firstFile.type);
+    }
+  });
+
+  document.body.appendChild(inputFile);
+  inputFile.click();
+  document.body.removeChild(inputFile);
+};
+</script>
 
 <template>
-  <div id="dropzone-main-container">
+  <div id="dropzone-main-container" @click="openFileExplorer()">
     <div id="dashed">
+      <!-- <input type="file" style="display: none"> -->
       <p><strong>Escolha um arquivo</strong> ou arraste pra cá!</p>
     </div>
   </div>
@@ -12,13 +33,13 @@
 #dropzone-main-container {
   width: 25em;
   height: 25em;
-  background: #CBDCE1;
+  background: #cbdce1;
   border-radius: 8px;
-  padding: .6em;
-  transition: .3s;
+  padding: 0.6em;
+  transition: 0.3s;
 }
 
-#dropzone-main-container:hover{
+#dropzone-main-container:hover {
   background: #afbfc4;
 }
 
@@ -26,7 +47,7 @@
   border: 2px dashed #30466e;
   width: 24.5em;
   height: 24.5em;
-  border-radius: 8px;
+  border-radius: 0.5em;
   cursor: pointer;
 }
 
