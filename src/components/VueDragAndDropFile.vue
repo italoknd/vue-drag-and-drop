@@ -20,7 +20,7 @@ const selectOrDropFile = (event: Event) => {
     filesSelecteds.push({
       name: firstFile.name,
       size: firstFile.size,
-      type: firstFile.type,
+      type: firstFile.type
     });
   }
 
@@ -29,8 +29,8 @@ const selectOrDropFile = (event: Event) => {
 </script>
 
 <template>
-  <div id="dropzone-main-container" @click="openFileExplorer()">
-    <div id="dashed">
+  <div id="main-container">
+    <div id="dropzone-main-container" @click="openFileExplorer()">
       <input
         type="file"
         ref="inputRef"
@@ -39,15 +39,17 @@ const selectOrDropFile = (event: Event) => {
       />
       <p><strong>Escolha um arquivo</strong> ou arraste pra cá!</p>
     </div>
-    <ListUploadedItems :filesSelecteds="filesSelecteds"/>
+    <ListUploadedItems :filesSelecteds="filesSelecteds" />
   </div>
 </template>
 
 <style scoped>
-/*MAIN CONTAINERS*/
-#dropzone-main-container {
+/*MAIN CONTAINER*/
+#main-container{
   width: 25em;
   height: 25em;
+}
+#dropzone-main-container {
   background: var(--main-bg-color);
   border: 1.8px dashed var(--secondary-bg-color);
   border-radius: 3px;
@@ -60,21 +62,9 @@ const selectOrDropFile = (event: Event) => {
   background: var(--main-bg-color-on-hover);
 }
 
-#dashed > p {
+#dropzone-main-container > p {
   text-align: center;
   color: var(--main-text-color);
   margin: 48% 0;
-}
-
-/*CARD ITEM*/
-.item-card {
-  border: 1px solid #30466e;
-  padding: 0.5em;
-  margin: 0.5em;
-  border-radius: 0.4em;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 </style>
