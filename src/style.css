@@ -1,0 +1,13 @@
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+:root {
+    /*BACKGROUND*/
+  --main-bg-color: #cbdce1;
+  --main-bg-color-on-hover:#afbfc4;
+  --secondary-bg-color: #30466e;
+
+  /*TEXT COLORS*/
+  --main-text-color: #0f2d5f
+}
