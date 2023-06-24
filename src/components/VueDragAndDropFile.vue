@@ -2,42 +2,52 @@
 import { IFile } from "../interfaces/IFiles";
 
 //VARIABLES
-let fileSelected = $ref<IFile>({
-  name: '',
-  size: 0,
-  type: ''
-})
+let filesSelecteds = $ref<IFile[]>([]);
+let inputRef = $ref<any>(null);
 
 //FUNCTIONS
-const selectFile = () => {
-  const inputFile: HTMLInputElement = document.createElement("input");
-  inputFile.type = "file";
-  inputFile.style.display = "none";
+const openFileExplorer = () => {
+  inputRef.click();
+};
 
-  inputFile.addEventListener("change", (event: Event) => {
-    const file = event.target as HTMLInputElement;
+const selectOrDropFile = (event: Event) => {
+  const file = event.target as HTMLInputElement;
 
-    if (file.files && file.files.length > 0) {
-      const firstFile: File = file.files[0];
-      fileSelected = firstFile
-    }
-  });
+  if (file.files && file.files.length > 0) {
+    const firstFile: File = file.files[0];
 
-  document.body.appendChild(inputFile);
-  inputFile.click();
-  document.body.removeChild(inputFile);
+    filesSelecteds.push({
+      name: firstFile.name,
+      size: firstFile.size,
+      type: firstFile.type,
+    });
+  }
+
+  console.log(filesSelecteds);
 };
 </script>
 
 <template>
-  <div id="dropzone-main-container" @click="selectFile()">
+  <div id="dropzone-main-container" @click="openFileExplorer()">
     <div id="dashed">
+      <input
+        type="file"
+        ref="inputRef"
+        style="display: none"
+        @change="selectOrDropFile"
+      />
+      <div v-if="filesSelecteds.length > 0">
+        <div v-for="({name, type, size}, index) in filesSelecteds" :key="index" class="item-card" >
+          <p>{{ name }}</p>
+        </div>
+      </div>
       <p><strong>Escolha um arquivo</strong> ou arraste pra cá!</p>
     </div>
   </div>
 </template>
 
 <style scoped>
+/*MAIN CONTAINERS*/
 #dropzone-main-container {
   width: 25em;
   height: 25em;
@@ -64,5 +74,13 @@ const selectFile = () => {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #0f2d5f;
   margin: 48% 0;
+}
+
+/*CARD ITEM*/
+.item-card{
+  border: 1px solid #30466e;
+  padding: .5em;
+  margin: .5em;
+  border-radius: .4em;
 }
 </style>
