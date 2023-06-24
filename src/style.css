@@ -1,13 +1,13 @@
 * {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 :root {
     /*BACKGROUND*/
-  --main-bg-color: #cbdce1;
-  --main-bg-color-on-hover:#afbfc4;
-  --secondary-bg-color: #30466e;
+  --main-bg-color: #efefef;
+  --main-bg-color-on-hover:#e4e4e4;
+  --secondary-bg-color: #53687E;
 
-  /*TEXT COLORS*/
-  --main-text-color: #0f2d5f
+  /*TEXT CONFIGS*/
+  --main-text-color: #0A0908;
 }

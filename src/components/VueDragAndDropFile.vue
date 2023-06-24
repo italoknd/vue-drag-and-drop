@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { IFile } from "../interfaces/IFiles";
+import ListUploadedItems from "./ListUploadedItems.vue";
 
 //VARIABLES
 let filesSelecteds = $ref<IFile[]>([]);
@@ -36,13 +37,9 @@ const selectOrDropFile = (event: Event) => {
         style="display: none"
         @change="selectOrDropFile"
       />
-      <div v-if="filesSelecteds.length > 0">
-        <div v-for="({name, type, size}, index) in filesSelecteds" :key="index" class="item-card" >
-          <p>{{ name }}</p>
-        </div>
-      </div>
       <p><strong>Escolha um arquivo</strong> ou arraste pra cá!</p>
     </div>
+    <ListUploadedItems :filesSelecteds="filesSelecteds"/>
   </div>
 </template>
 
@@ -51,36 +48,33 @@ const selectOrDropFile = (event: Event) => {
 #dropzone-main-container {
   width: 25em;
   height: 25em;
-  background: #cbdce1;
-  border-radius: 8px;
+  background: var(--main-bg-color);
+  border: 1.8px dashed var(--secondary-bg-color);
+  border-radius: 3px;
   padding: 0.6em;
+  cursor: pointer;
   transition: 0.3s;
 }
 
 #dropzone-main-container:hover {
-  background: #afbfc4;
-}
-
-#dashed {
-  border: 2px dashed #30466e;
-  width: 24.5em;
-  height: 24.5em;
-  border-radius: 0.5em;
-  cursor: pointer;
+  background: var(--main-bg-color-on-hover);
 }
 
 #dashed > p {
   text-align: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: #0f2d5f;
+  color: var(--main-text-color);
   margin: 48% 0;
 }
 
 /*CARD ITEM*/
-.item-card{
+.item-card {
   border: 1px solid #30466e;
-  padding: .5em;
-  margin: .5em;
-  border-radius: .4em;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: 0.4em;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

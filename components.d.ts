@@ -7,6 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    App: typeof import('./src/App.vue')['default']
+    ListItemsUploadeds: typeof import('./src/components/ListItemsUploadeds.vue')['default']
+    ListUploadedItems: typeof import('./src/components/ListUploadedItems.vue')['default']
+    MSWordIcon: typeof import('./src/assets/icons/MSWordIcon.vue')['default']
     VueDragAndDropFile: typeof import('./src/components/VueDragAndDropFile.vue')['default']
   }
 }
