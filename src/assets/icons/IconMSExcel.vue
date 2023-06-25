@@ -24,6 +24,6 @@
 
 <script>
 export default {
-  name: "VscodeIconsFileTypeExcel2",
+  name: "MSExcelIcon",
 };
 </script>

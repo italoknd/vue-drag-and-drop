@@ -7,8 +7,8 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import MSExcelIcon from "../assets/icons/MSExcelIcon.vue";
-import MSWordIcon from "../assets/icons/MSWordIcon.vue";
+import MSExcelIcon from "../assets/icons/IconMSExcel.vue";
+import MSWordIcon from "../assets/icons/IconMSWord.vue";
 
 const props = defineProps({
   doctype: {
