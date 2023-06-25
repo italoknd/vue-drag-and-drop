@@ -16,12 +16,19 @@ const selectOrDropFile = (event: Event) => {
 
   if (file.files && file.files.length > 0) {
     const firstFile: File = file.files[0];
+    const reader:FileReader = new FileReader();
+    
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      console.log(e.target?.result)
+      selectedFiles.push({
+        name: firstFile.name,
+        size: firstFile.size,
+        type: firstFile.type,
+        dataURL: e.target?.result
+      });
+    };
 
-    selectedFiles.push({
-      name: firstFile.name,
-      size: firstFile.size,
-      type: firstFile.type,
-    });
+    reader.readAsDataURL(firstFile);
   }
 
   console.log(selectedFiles);
