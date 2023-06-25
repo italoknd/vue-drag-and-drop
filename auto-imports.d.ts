@@ -12,6 +12,7 @@ declare global {
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
   const EffectScope: typeof import('vue')['EffectScope']
+  const Icons: typeof import('./src/components/Icons.vue')['default']
   const ListItemsUploadeds: typeof import('./src/components/ListItemsUploadeds.vue')['default']
   const MSExcelIcon: typeof import('./src/assets/icons/MSExcelIcon.vue')['default']
   const MSWordIcon: typeof import('./src/assets/icons/MSWordIcon.vue')['default']

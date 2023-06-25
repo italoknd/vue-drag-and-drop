@@ -1,32 +1,34 @@
 <template>
-  <div class="uploaded-items" v-if="filesSelecteds.length > 0">
+  <div class="uploaded-items">
     <div
-      v-for="({ name, type }, index) in filesSelecteds"
+      v-for="({ name, type }, index) in selectedFiles"
       :key="index"
       class="item-card"
     >
       <span>{{ name }}</span>
-      <MSWordIconVue v-if="name.includes('.doc')" class="icon-position" />
-      <MSExcelIconVue class="icon-position" v-if="name.includes('.xlsx')" />
+      <Icons :doctype="type" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import MSWordIconVue from "../assets/icons/MSWordIcon.vue";
-import MSExcelIconVue from "../assets/icons/MSExcelIcon.vue";
-import { PropType } from "vue";
+import Icons from "./Icons.vue";
 import { IFile } from "../interfaces/IFiles";
+import { PropType } from "vue";
 
 const props = defineProps({
-  filesSelecteds: Array as PropType<IFile[]>,
+  selectedFiles: {
+    type: Array as PropType<IFile[]>,
+  },
 });
+
+const { selectedFiles } = props;
 </script>
 
 <style scoped>
 .uploaded-items {
   border: 1px solid var(--secondary-bg-color);
-  border-radius: 1.8px;
+  border-radius: 0.1125em;
   margin-top: 0.5em;
 }
 .item-card {

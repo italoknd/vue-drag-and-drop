@@ -3,7 +3,7 @@ import { IFile } from "../interfaces/IFiles";
 import ListUploadedItems from "./ListUploadedItems.vue";
 
 //VARIABLES
-let filesSelecteds = $ref<IFile[]>([]);
+let selectedFiles = $ref<IFile[]>([]);
 let inputRef = $ref<any>(null);
 
 //FUNCTIONS
@@ -17,14 +17,14 @@ const selectOrDropFile = (event: Event) => {
   if (file.files && file.files.length > 0) {
     const firstFile: File = file.files[0];
 
-    filesSelecteds.push({
+    selectedFiles.push({
       name: firstFile.name,
       size: firstFile.size,
-      type: firstFile.type
+      type: firstFile.type,
     });
   }
 
-  console.log(filesSelecteds);
+  console.log(selectedFiles);
 };
 </script>
 
@@ -39,13 +39,16 @@ const selectOrDropFile = (event: Event) => {
       />
       <p><strong>Escolha um arquivo</strong> ou arraste pra cá!</p>
     </div>
-    <ListUploadedItems :filesSelecteds="filesSelecteds" />
+    <ListUploadedItems
+      v-if="selectedFiles.length > 0"
+      :selectedFiles="selectedFiles"
+    />
   </div>
 </template>
 
 <style scoped>
 /*MAIN CONTAINER*/
-#main-container{
+#main-container {
   width: 25em;
   height: 25em;
 }
