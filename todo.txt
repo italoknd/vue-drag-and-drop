@@ -1,0 +1,7 @@
+limitar o numero de arquivos para upload no componente
+    - Devolver mensagem de erro ao ultrapassar o número estipulado
+
+trazer mais de um tipo de layout no componente
+conseguir pré-visualizar arquivos de imagem, word, excel e txt
+habilitar função drag and drop
+limitar tamanho do arquivo a ser upado

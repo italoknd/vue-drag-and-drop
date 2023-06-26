@@ -18,6 +18,7 @@ declare global {
   const ListItemsUploadeds: typeof import('./src/components/ListItemsUploadeds.vue')['default']
   const MSExcelIcon: typeof import('./src/assets/icons/MSExcelIcon.vue')['default']
   const MSWordIcon: typeof import('./src/assets/icons/MSWordIcon.vue')['default']
+  const VueDragAndDropFile: typeof import('./src/components/VueDragAndDropFile.vue')['default']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']

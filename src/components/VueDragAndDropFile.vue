@@ -5,6 +5,7 @@ import ListUploadedItems from "./ListUploadedItems.vue";
 //VARIABLES
 let selectedFiles = $ref<IFile[]>([]);
 let inputRef = $ref<any>(null);
+let onDropZone = $ref<Boolean>(false);
 
 //FUNCTIONS
 const openFileExplorer = () => {
@@ -16,28 +17,48 @@ const selectOrDropFile = (event: Event) => {
 
   if (file.files && file.files.length > 0) {
     const firstFile: File = file.files[0];
-    const reader:FileReader = new FileReader();
-    
+    const reader: FileReader = new FileReader();
+
     reader.onload = (e: ProgressEvent<FileReader>) => {
-      console.log(e.target?.result)
       selectedFiles.push({
         name: firstFile.name,
         size: firstFile.size,
         type: firstFile.type,
-        dataURL: e.target?.result
+        dataURL: e.target?.result,
       });
     };
 
     reader.readAsDataURL(firstFile);
   }
+};
+interface Item {
+  id: number;
+  name: string;
+}
 
-  console.log(selectedFiles);
+//DRAG N DROP HANDLER FUNCTIONS
+const drop = (event: DragEvent) => {
+  console.log(event);
+
+  // Prevent default behavior
+  event.preventDefault();
+
+  // Get the data being dropped
+  if (event.dataTransfer) {
+    const data = JSON.parse(event.dataTransfer.getData("text/plain"));
+    console.log("data >>>", data);
+    // const data = JSON.parse(event.dataTransfer);
+  }
 };
 </script>
 
 <template>
   <div id="main-container">
-    <div id="dropzone-main-container" @click="openFileExplorer()">
+    <div
+      id="dropzone-main-container"
+      @click="openFileExplorer()"
+      @drop.prevent="drop"
+    >
       <input
         type="file"
         ref="inputRef"
@@ -59,6 +80,7 @@ const selectOrDropFile = (event: Event) => {
   width: 25em;
   height: 25em;
 }
+
 #dropzone-main-container {
   background: var(--main-bg-color);
   border: 1.8px dashed var(--secondary-bg-color);
