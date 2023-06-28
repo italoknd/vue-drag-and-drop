@@ -11,11 +11,11 @@ import IconMSExcel from "../assets/icons/IconMSExcel.vue";
 import IconMSWord from "../assets/icons/IconMSWord.vue";
 import IconTextFile from "../assets/icons/IconTextFile.vue";
 
-const props = defineProps({
-  doctype: {
-    type: String,
-  },
-});
+const props = defineProps<{
+  doctype: String,
+}>();
 
-const { doctype } = props;
+const doctype = $computed<String>(()=>{
+  return props.doctype
+})
 </script>
