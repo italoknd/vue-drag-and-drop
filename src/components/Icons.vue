@@ -2,6 +2,7 @@
   <div>
     <IconMSWord class="icon-position" v-if="doctype?.endsWith('.docx')" />
     <IconMSExcel class="icon-position" v-if="doctype?.endsWith('.xlsx')" />
+    <IconMSPowerPoint class="icon-position" v-if="doctype?.endsWith('.pptx')"/>
     <IconTextFile class="icon-position" v-if="doctype?.endsWith('.txt')" />
     <IconPDF class="icon-position" v-if="doctype?.endsWith('.pdf')"/>
   </div>
@@ -10,6 +11,7 @@
 <script setup lang="ts">
 import IconMSExcel from "../assets/icons/IconMSExcel.vue";
 import IconMSWord from "../assets/icons/IconMSWord.vue";
+import IconMSPowerPoint from "../assets/icons/IconMSPowerPoint.vue";
 import IconTextFile from "../assets/icons/IconTextFile.vue";
 import IconPDF from "../assets/icons/IconPDF.vue"
 

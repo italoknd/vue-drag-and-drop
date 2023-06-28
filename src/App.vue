@@ -3,7 +3,7 @@ import VueDragAndDropFile from './components/VueDragAndDropFile.vue'
 </script>
 
 <template>
-  <VueDragAndDropFile />
+  <VueDragAndDropFile style="margin: auto;"/>
 </template>
 
 <style scoped>

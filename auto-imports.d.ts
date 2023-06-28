@@ -13,6 +13,7 @@ declare global {
   const $toRef: typeof import('vue/macros')['$toRef']
   const EffectScope: typeof import('vue')['EffectScope']
   const IconMSExcel: typeof import('./src/assets/icons/IconMSExcel.vue')['default']
+  const IconMSPowerPoint: typeof import('./src/assets/icons/IconMSPowerPoint.vue')['default']
   const IconMSWord: typeof import('./src/assets/icons/IconMSWord.vue')['default']
   const IconPDF: typeof import('./src/assets/icons/IconPDF.vue')['default']
   const IconTextFile: typeof import('./src/assets/icons/IconTextFile.vue')['default']
