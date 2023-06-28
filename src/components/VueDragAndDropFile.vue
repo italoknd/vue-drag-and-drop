@@ -28,8 +28,13 @@ const selectOrDropFile = (event: Event) => {
     };
 
     reader.readAsDataURL(firstFile);
-  }
+  }  
 };
+
+const removeFile = (idx: number) => {
+  selectedFiles.splice(idx, 1);
+};
+
 interface Item {
   id: number;
   name: string;
@@ -68,6 +73,7 @@ const drop = (event: DragEvent) => {
     </div>
     <ListUploadedItems
       v-if="selectedFiles.length > 0"
+      @removeFile="removeFile"
       :selectedFiles="selectedFiles"
     />
   </div>
