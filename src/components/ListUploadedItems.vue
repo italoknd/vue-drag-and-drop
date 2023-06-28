@@ -1,17 +1,17 @@
 <template>
   <div class="uploaded-items">
     <div
-      v-for="({ name, type }, index) in selectedFiles"
+      v-for="({ name }, index) in selectedFiles"
       :key="index"
       class="item-card"
     >
-      <div class="files-container">
+      <div class="files-container" :title="name">
         <div id="icon-box">
-          <Icons :doctype="type" />
+          <Icons :doctype="name" />
         </div>
-        <span>{{ name }}</span>
+        <span>{{ name.length > 20 ? name.slice(0, 30) + "..." : name }}</span>
       </div>
-      <IconTrash id="trash-icon"/>
+      <IconTrash id="trash-icon" />
     </div>
   </div>
 </template>
@@ -51,6 +51,7 @@ const { selectedFiles } = props;
 .files-container {
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   span {
     margin-left: 0.25em;

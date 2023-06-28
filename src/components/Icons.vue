@@ -1,14 +1,15 @@
 <template>
   <div>
-    <MSWordIcon v-if="doctype?.includes('.doc')" class="icon-position"/>
-    <MSExcelIcon class="icon-position" v-if="doctype?.includes('.xlsx')"/>
+    <IconMSWord  v-if="doctype?.endsWith('.docx')" class="icon-position" />
+    <IconMSExcel class="icon-position" v-if="doctype?.endsWith('.xlsx')" />
+    <IconTextFile class="icon-position" v-if="doctype?.endsWith('.txt')" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
-import MSExcelIcon from "../assets/icons/IconMSExcel.vue";
-import MSWordIcon from "../assets/icons/IconMSWord.vue";
+import IconMSExcel from "../assets/icons/IconMSExcel.vue";
+import IconMSWord from "../assets/icons/IconMSWord.vue";
+import IconTextFile from "../assets/icons/IconTextFile.vue";
 
 const props = defineProps({
   doctype: {
@@ -18,5 +19,3 @@ const props = defineProps({
 
 const { doctype } = props;
 </script>
-
-<style lang="scss" scoped></style>
