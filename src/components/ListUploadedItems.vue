@@ -1,17 +1,15 @@
 <template>
   <div class="uploaded-items">
-    <div
-      v-for="({ name }, index) in selectedFiles"
-      :key="index"
-      class="item-card"
-    >
+    <div v-for="({ name }, index) in props.selectedFiles" :key="index" class="item-card">
       <div class="files-container" :title="name">
         <div id="icon-box">
           <Icons :doctype="name" />
         </div>
         <span>{{ name.length > 20 ? name.slice(0, 30) + "..." : name }}</span>
       </div>
-      <IconTrash id="trash-icon" />
+      <div @click="removeFile(index)">
+        <IconTrash id="trash-icon" />
+      </div>
     </div>
   </div>
 </template>
@@ -20,15 +18,19 @@
 import Icons from "./Icons.vue";
 import IconTrash from "../assets/icons/IconTrash.vue";
 import { IFile } from "../interfaces/IFiles";
-import { PropType } from "vue";
 
-const props = defineProps({
-  selectedFiles: {
-    type: Array as PropType<IFile[]>,
-  },
-});
+//PROPS, EMITS AND
+const emit = defineEmits<{
+  removeFile: [index: number];
+}>();
 
-const { selectedFiles } = props;
+const props = defineProps<{
+  selectedFiles: IFile[];
+}>();
+
+const removeFile = (idx: number) => {
+  emit("removeFile", idx);
+};
 </script>
 
 <style scoped lang="scss">
