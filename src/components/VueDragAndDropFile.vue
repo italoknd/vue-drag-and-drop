@@ -5,7 +5,6 @@ import ListUploadedItems from "./ListUploadedItems.vue";
 //VARIABLES
 let selectedFiles = $ref<IFile[]>([]);
 let inputRef = $ref<any>(null);
-let onDropZone = $ref<Boolean>(false);
 
 //FUNCTIONS
 const openFileExplorer = () => {

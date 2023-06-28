@@ -14,6 +14,7 @@ declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const IconMSExcel: typeof import('./src/assets/icons/IconMSExcel.vue')['default']
   const IconMSWord: typeof import('./src/assets/icons/IconMSWord.vue')['default']
+  const IconTrash: typeof import('./src/assets/icons/IconTrash.vue')['default']
   const Icons: typeof import('./src/components/Icons.vue')['default']
   const ListItemsUploadeds: typeof import('./src/components/ListItemsUploadeds.vue')['default']
   const MSExcelIcon: typeof import('./src/assets/icons/MSExcelIcon.vue')['default']

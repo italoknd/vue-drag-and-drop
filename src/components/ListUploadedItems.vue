@@ -5,14 +5,20 @@
       :key="index"
       class="item-card"
     >
-      <span>{{ name }}</span>
-      <Icons :doctype="type" />
+      <div class="files-container">
+        <div id="icon-box">
+          <Icons :doctype="type" />
+        </div>
+        <span>{{ name }}</span>
+      </div>
+      <IconTrash id="trash-icon"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import Icons from "./Icons.vue";
+import IconTrash from "../assets/icons/IconTrash.vue";
 import { IFile } from "../interfaces/IFiles";
 import { PropType } from "vue";
 
@@ -25,7 +31,7 @@ const props = defineProps({
 const { selectedFiles } = props;
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .uploaded-items {
   border: 1px solid var(--secondary-bg-color);
   border-radius: 0.1125em;
@@ -40,5 +46,18 @@ const { selectedFiles } = props;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.files-container {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-left: 0.25em;
+  }
+}
+
+#trash-icon {
+  cursor: pointer;
 }
 </style>
