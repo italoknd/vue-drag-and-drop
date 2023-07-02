@@ -62,7 +62,8 @@ const doesNotIncludes = (name: string): boolean => {
   .miniature {
     width: 1.7em;
     height: 1.7em;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: var(--main-bg-color-on-hover);
   }
 }
 .item-card {
