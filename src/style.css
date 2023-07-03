@@ -7,7 +7,26 @@
   --main-bg-color: #efefef;
   --main-bg-color-on-hover:#e4e4e4;
   --secondary-bg-color: #1a1f22;
+  --scroll-bar-bg-color: #5b5e5fb9;
+  --scroll-bar-bg-color-on-hover: #494b4db9;
 
   /*TEXT CONFIGS*/
   --main-text-color: #1a1f22;
+}
+
+::-webkit-scrollbar {
+  width: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-bar-bg-color);
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-bar-bg-color-on-hover);
 }
