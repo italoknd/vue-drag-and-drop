@@ -47,7 +47,8 @@ const doesNotIncludes = (name: string): boolean => {
     !name?.includes(".jpeg") &&
     !name?.includes(".svg")
   )
-    return (includes = true);
+  includes = true
+  return includes
 };
 </script>
 
