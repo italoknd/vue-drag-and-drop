@@ -19,5 +19,5 @@ export default defineConfig({
       dirs: ["src/**/*.vue"],
     }),
   ],
-  base: "/vue-drag-and-drop",
+  base: "/vue-drag-and-drop/",
 });
