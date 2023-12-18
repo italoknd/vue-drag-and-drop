@@ -12,8 +12,6 @@ const openFileExplorer = () => {
 };
 
 const selectOrDropFile = (event: Event) => {
-  console.log('event >>>',event);
-  
   const file = event.target as HTMLInputElement;
 
   if (file.files && file.files.length > 0) {
@@ -21,8 +19,6 @@ const selectOrDropFile = (event: Event) => {
     const reader: FileReader = new FileReader();
 
     reader.onload = (e: ProgressEvent<FileReader>) => {
-      console.log(e.target);
-      
       selectedFiles.push({
         name: firstFile.name,
         size: firstFile.size,
@@ -32,7 +28,7 @@ const selectOrDropFile = (event: Event) => {
     };
 
     reader.readAsDataURL(firstFile);
-  }  
+  }
 };
 
 const removeFile = (idx: number) => {
@@ -40,27 +36,25 @@ const removeFile = (idx: number) => {
 };
 
 //DRAG N DROP HANDLER FUNCTIONS
-const drop = (event: any) => {
-  event.preventDefault();
-  console.log('drop event >>>', event);
-  
-  selectOrDropFile(event)
-  // if (event.dataTransfer) {
-  //   const data = event.dataTransfer.files;
-  //   console.log(data);
-    
-  //   selectedFiles.push({
-  //     name: data[0].name,
-  //     size: data[0].size,
-  //     type: data[0].type,
-  //     dataURL: event.target?.result,
-  //   });
-    
-  // }
-  const preventDefault = (event:Event) => {
-    console.log(event);
-    event.preventDefault()
+const handleDrop = (event: DragEvent) => {
+  if (event?.dataTransfer && event.dataTransfer?.files.length) {
+    handleFiles(event.dataTransfer.files[0]);
   }
+};
+
+const handleFiles = (file: any) => {
+  const reader: FileReader = new FileReader();
+
+  reader.onload = (e: ProgressEvent<FileReader>) => {
+    selectedFiles.push({
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      dataURL: e.target?.result,
+    });
+  };
+
+  reader.readAsDataURL(file);
 };
 </script>
 
@@ -69,9 +63,8 @@ const drop = (event: any) => {
     <div
       id="dropzone-main-container"
       @click="openFileExplorer()"
-      @drop.prevent="drop"
-      @dragenter.prevent="preventDefault"
-      @dragover.prevent="preventDefault"
+      @drop.prevent="handleDrop"
+      @dragover.prevent
     >
       <input
         type="file"
