@@ -1,5 +1,5 @@
 <template>
-  <div class="uploaded-items" >
+  <div class="uploaded-items">
     <div
       v-for="({ name, dataURL }, index) in props.selectedFiles"
       :key="index"
@@ -8,7 +8,12 @@
       <div class="files-container" :title="name">
         <div id="icon-box">
           <Icons v-if="doesNotIncludes(name)" :doctype="name" />
-          <img class="miniature" v-else :src="dataURL" alt="Imagem..." />
+          <img
+            class="miniature"
+            v-else
+            :src="(dataURL as string | undefined)"
+            alt="Imagem..."
+          />
         </div>
         <span>{{ name.length > 20 ? name.slice(0, 27) + "..." : name }}</span>
       </div>
@@ -48,8 +53,8 @@ const doesNotIncludes = (name: string): boolean => {
     !name?.includes(".svg")
   ) {
     includes = true;
-    return includes;
   }
+  return includes;
 };
 </script>
 
