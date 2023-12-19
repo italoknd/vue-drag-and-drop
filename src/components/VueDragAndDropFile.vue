@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { defineEmits } from "vue";
 import { IFile } from "../interfaces/IFiles";
 import ListUploadedItems from "./ListUploadedItems.vue";
 
@@ -23,8 +24,10 @@ const selectOrDropFile = (event: Event) => {
         name: firstFile.name,
         size: firstFile.size,
         type: firstFile.type,
-        dataURL: e.target?.result,
+        dataURL: e.target?.result
       });
+
+      sendData(selectedFiles);
     };
 
     reader.readAsDataURL(firstFile);
@@ -33,6 +36,7 @@ const selectOrDropFile = (event: Event) => {
 
 const removeFile = (idx: number) => {
   selectedFiles.splice(idx, 1);
+  sendData(selectedFiles);
 };
 
 //DRAG N DROP HANDLER FUNCTIONS
@@ -50,12 +54,22 @@ const handleFiles = (file: any) => {
       name: file.name,
       size: file.size,
       type: file.type,
-      dataURL: e.target?.result,
+      dataURL: e.target?.result
     });
+
+    sendData(selectedFiles);
   };
 
   reader.readAsDataURL(file);
 };
+const sendData = (data: IFile[]) => {
+  emits("getData", data);
+};
+
+//EMITS
+const emits = defineEmits<{
+  (e: "getData", selectedFiles: IFile[]): void;
+}>();
 </script>
 
 <template>
