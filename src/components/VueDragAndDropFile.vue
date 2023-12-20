@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineEmits } from "vue";
 import { IFile } from "../interfaces/IFiles";
 import ListUploadedItems from "./ListUploadedItems.vue";
 
