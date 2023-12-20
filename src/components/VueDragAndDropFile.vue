@@ -66,10 +66,17 @@ const sendData = (data: IFile[]) => {
   emits("getData", data);
 };
 
-//EMITS
+//EMITS & PROPS
 const emits = defineEmits<{
   (e: "getData", selectedFiles: IFile[]): void;
 }>();
+
+const props = defineProps({
+  placeholder: {
+    type: String,
+    default: "Escolha um arquivo ou arraste pra cá!"
+  }
+});
 </script>
 
 <template>
@@ -86,7 +93,9 @@ const emits = defineEmits<{
         style="display: none"
         @change="selectOrDropFile"
       />
-      <p><strong>Escolha um arquivo</strong> ou arraste pra cá!</p>
+      <p>
+        <strong>{{ props.placeholder }}</strong>
+      </p>
     </div>
     <ListUploadedItems
       v-if="selectedFiles.length > 0"
